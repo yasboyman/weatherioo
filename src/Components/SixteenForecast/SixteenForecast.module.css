@@ -1,0 +1,17 @@
+
+.sixteenContainer{
+    text-align: center;
+}
+
+.sixTeenDay{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: white;
+    z-index: 80;
+}
+
+

@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
+import HomePage from "./Components/HomePage/HomePage";
+import SixteenForecast from "./Components/SixteenForecast/SixteenForecast";
+import './App.css'
+import NavigationItem from "./Components/NavigationItem/NavigationItem";
+import rain from "./assets/rain.mp4";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    return (
+        <div className="App">
+            <h3> Weather App </h3>
+            <NavigationItem exact link={'/'}>
+                <button>Tokyo</button>
+            </NavigationItem>
+            <NavigationItem exact link={'/16DayForecast'}>
+                <button>16 Day Forecast</button>
+                <video loop={true} autoPlay={true} muted={true}>
+                    <source src={rain} type={'video/mp4'}/>
+                </video>
+            </NavigationItem>
+            <main>
+                <Switch>
+                    <Route path="/" component={HomePage} exact/>
+                    <Route path="/16DayForecast" component={SixteenForecast}/>
+                </Switch>
+            </main>
+        </div>
+    );
 }
 
 export default App;
