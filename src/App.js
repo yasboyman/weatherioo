@@ -6,16 +6,18 @@ import './App.css'
 import NavigationItem from "./Components/NavigationItem/NavigationItem";
 import rain from "./assets/rain.mp4";
 
+
 const App = () => {
 
     return (
         <div className="App">
-            <h3> Weather App </h3>
+            {/*<h3> Weather App </h3>*/}
+
             <NavigationItem exact link={'/'}>
-                <button>Tokyo</button>
+                <button className={'myButton'}>Tokyo</button>
             </NavigationItem>
             <NavigationItem exact link={'/16DayForecast'}>
-                <button>16 Day Forecast</button>
+                <button className={'myButton'} >16 Day Forecast</button>
                 <video loop={true} autoPlay={true} muted={true}>
                     <source src={rain} type={'video/mp4'}/>
                 </video>
