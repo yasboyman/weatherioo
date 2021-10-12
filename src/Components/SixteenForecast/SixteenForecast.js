@@ -2,12 +2,16 @@ import React, {useState,useEffect} from 'react'
 import axios from "axios";
 import CurrentWeather from "../CurrentWeatherContainer/CurrentWeather";
 import styles from './SixteenForecast.module.css'
+import Spinner from "../Utilities/Spinner";
 
 
 const SixteenForecast = () => {
 
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
+    const [filterMinTemp,setMinFilter] = useState('all')
+    const [filterMaxTemp,setMaxFilter] = useState('all')
+
     const key = process.env.REACT_APP_GOOGLE_API_KEY
 
     useEffect(() => {
@@ -33,11 +37,40 @@ const SixteenForecast = () => {
         return new Date(day).getDay()
     }
 
+     const filterTemperature = data => {
+        if (filterMinTemp === 'all') return data;
+        if (data.min_temp <= filterMinTemp ) return data;
+
+         if (filterMaxTemp === 'all') return data;
+         if (data.max_temp >= filterMaxTemp ) return data;
+    }
+
     return(
         <div className={styles.sixteenContainer}>
-            {loading === true ? '...loading' :
+            {loading ? <Spinner /> :
+                <>
+                    <div>
+                        <input
+                            placeholder={'Search Min Temperature'}
+                            value={filterMinTemp ||'all'}
+                            onChange={(e) => setMinFilter(e.target.value)}
+                            type={'number'}
+
+                        />
+                        <input
+                            placeholder={'Search Max Temperature'}
+                            value={filterMaxTemp || 'all'}
+                            onChange={(e) => setMaxFilter(e.target.value)}
+                            type={'number'}
+
+                        />
+
+                    </div>
                 <div  className={styles.sixTeenDay}>
-                    {data && data.map( i => {
+
+                    {data && data
+                        .filter(filterTemperature)
+                        .map( i => {
                         console.log('inside', i )
                         return (<CurrentWeather
                             description={i.weather.description}
@@ -52,6 +85,7 @@ const SixteenForecast = () => {
                     })
                     }
                 </div>
+                </>
             }
         </div>
     )

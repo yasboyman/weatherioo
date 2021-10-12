@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import CurrentWeather from "../CurrentWeatherContainer/CurrentWeather";
+import Spinner from "../Utilities/Spinner";
 
 
 const HomePage = () => {
@@ -18,11 +19,6 @@ const HomePage = () => {
     const mumbai = {lat: 19.075983, long: 72.877655}
     const sydney = {lat: -33.868820, long: 151.209290}
     const tokyo = {lat: 35.689487, long: 139.691711}
-
-    // const setLocation1 = async () =>  await
-
-
-//const fetchData =  () => location && axios.get(`https:api.weatherbit.io/v2.0/current?lat=35.689487&lon=139.691711&key=${key}&include=minutely`)
 
     useEffect(() => {
 
@@ -42,25 +38,27 @@ const HomePage = () => {
 
     console.log('data::', data)
     return (
-        <div className="App">
-            <header className="App-header">
+        <>
+            {loading ? <Spinner/> :
+                <div className="App">
+                    <header className="App-header">
+                        <>
+                            {data && data.map(i => {
+                                console.log('inside', i)
+                                return (<CurrentWeather
+                                    description={i.weather.description}
+                                    icon={i.weather.icon}
+                                    temp={i.temp}
+                                    city={i.city_name}
+                                />)
+                            })
+                            }
+                        </>
 
-                {loading === true ? '...loading' :
-                    <>
-                        {data && data.map(i => {
-                            console.log('inside', i)
-                            return (<CurrentWeather
-                                description={i.weather.description}
-                                icon={i.weather.icon}
-                                temp={i.temp}
-                                city={i.city_name}
-                            />)
-                        })
-                        }
-                    </>
-                }
-            </header>
-        </div>
+                    </header>
+                </div>
+            }
+        </>
     );
 }
 
