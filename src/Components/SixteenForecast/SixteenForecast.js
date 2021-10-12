@@ -12,6 +12,10 @@ const SixteenForecast = () => {
     const [filterMinTemp,setMinFilter] = useState('all')
     const [filterMaxTemp,setMaxFilter] = useState('all')
 
+
+    console.log('MIN', filterMinTemp)
+    console.log('MAX', typeof filterMaxTemp  )
+
     const key = process.env.REACT_APP_GOOGLE_API_KEY
 
     useEffect(() => {
@@ -38,11 +42,12 @@ const SixteenForecast = () => {
     }
 
      const filterTemperature = data => {
+
         if (filterMinTemp === 'all') return data;
-        if (data.min_temp <= filterMinTemp ) return data;
+        if ( parseFloat(filterMinTemp) <= parseFloat(data.min_temp)) return data;
 
          if (filterMaxTemp === 'all') return data;
-         if (data.max_temp >= filterMaxTemp ) return data;
+         if ( parseFloat(data.max_temp)   >= parseFloat(filterMaxTemp) )  return data;
     }
 
     return(
@@ -50,19 +55,24 @@ const SixteenForecast = () => {
             {loading ? <Spinner /> :
                 <>
                     <div>
+                        <label>
+
+
                         <input
                             placeholder={'Search Min Temperature'}
-                            value={filterMinTemp ||'all'}
+                            value={filterMinTemp || 'all'}
                             onChange={(e) => setMinFilter(e.target.value)}
                             type={'number'}
 
                         />
+                            {/*<button onSubmit={ () => setMinFilter('all')}>Clear</button>*/}
+                        </label>
+
                         <input
                             placeholder={'Search Max Temperature'}
                             value={filterMaxTemp || 'all'}
                             onChange={(e) => setMaxFilter(e.target.value)}
                             type={'number'}
-
                         />
 
                     </div>
@@ -71,7 +81,7 @@ const SixteenForecast = () => {
                     {data && data
                         .filter(filterTemperature)
                         .map( i => {
-                        console.log('inside', i )
+                            console.log( typeof  i.max_temp)
                         return (<CurrentWeather
                             description={i.weather.description}
                             icon={i.weather.icon}

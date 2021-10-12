@@ -3,8 +3,6 @@ import styles from './WeatherCard.module.css'
 
 
 const WeatherCard = ({description, image, temp, city, min_temp, max_temp, day, sixteenOn}) => {
-
-    console.log('THIS IS DAY', day)
     return (
 
 

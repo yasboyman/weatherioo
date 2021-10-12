@@ -44,7 +44,7 @@ const HomePage = () => {
                     <header className="App-header">
                         <>
                             {data && data.map(i => {
-                                console.log('inside', i)
+                                // console.log('inside', i)
                                 return (<CurrentWeather
                                     description={i.weather.description}
                                     icon={i.weather.icon}
