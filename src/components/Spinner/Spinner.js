@@ -2,7 +2,6 @@ import React from 'react';
 // import spinner from '../../assets/Spinner.svg'
 import { ReactComponent as Logo } from '../../assets/Spinner.svg';
 
-
 const Spinner = () => {
 
     return(
@@ -14,8 +13,7 @@ const Spinner = () => {
         <h2 style={{color: 'white'}}>Loading...</h2>
         </div>
     )
-
-
 }
 
 export default Spinner
+

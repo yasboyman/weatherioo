@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from "react";
-import styles from './CurrentWeather.module.css'
+import styles from './WeatherContainer.module.css'
 import axios from "axios";
-import CurrentWeatherCard from "./CurrentWeatherCard/CurrentWeatherCard";
+import CurrentWeatherCard from "./WeatherCard/CurrentWeatherCard";
+import PropTypes from 'prop-types';
 
 
 
 
-const CurrentWeather = ({description,icon, temp, city, min_temp, max_temp, day, sixteenOn})=> {
+
+const WeatherContainer = ({description,icon, temp, city, min_temp, max_temp, day, sixteenOn})=> {
     const [image,setImage] = useState()
 
+
+    console.log( typeof min_temp )
 
     useEffect(() => {
 
@@ -16,7 +20,6 @@ const CurrentWeather = ({description,icon, temp, city, min_temp, max_temp, day, 
             try {
                 const response = await axios.get(`https://www.weatherbit.io/static/img/icons/${icon}.png`)
                 setImage(response.request.responseURL)
-                console.log(response.request.responseURL)
 
             } catch (error) {
                 console.log(error);
@@ -44,4 +47,20 @@ const CurrentWeather = ({description,icon, temp, city, min_temp, max_temp, day, 
         </div>
     )
 }
-export default CurrentWeather
+
+
+WeatherContainer.propTypes = {
+    description: PropTypes.string,
+    icon: PropTypes.string,
+    temp: PropTypes.number,
+    min_temp: PropTypes.number,
+    max_temp: PropTypes.number,
+    sixteenOn: PropTypes.bool
+
+};
+
+
+export default WeatherContainer
+
+
+

@@ -1,14 +1,13 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import CurrentWeather from "../CurrentWeatherContainer/CurrentWeather";
-import Spinner from "../Utilities/Spinner";
+import WeatherContainer from "../WeatherContainer/WeatherContainer";
+import Spinner from "../Spinner/Spinner";
 
 
-const HomePage = () => {
+const Index = () => {
 
     /* Hooks state fetching initial data */
     const [loading, setLoading] = useState(true)
-    // const [location, setLocation] = useState('')
     const [data, setData] = useState([])
 
 
@@ -45,7 +44,7 @@ const HomePage = () => {
                         <>
                             {data && data.map(i => {
                                 // console.log('inside', i)
-                                return (<CurrentWeather
+                                return (<WeatherContainer
                                     description={i.weather.description}
                                     icon={i.weather.icon}
                                     temp={i.temp}
@@ -62,4 +61,4 @@ const HomePage = () => {
     );
 }
 
-export default HomePage;
+export default Index;

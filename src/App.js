@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import HomePage from "./Components/HomePage/HomePage";
-import SixteenForecast from "./Components/SixteenForecast/SixteenForecast";
+import HomePage from "./components/HomePage";
+import SixteenForecast from "./components/SixteenForecast/SixteenForecast";
 import './App.css'
-import NavigationItem from "./Components/NavigationItem/NavigationItem";
+import NavigationItem from "./components/NavigationItem";
 import rain from "./assets/rain.mp4";
 
 
