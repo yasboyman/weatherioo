@@ -43,12 +43,14 @@ const Index = () => {
                     <header className="App-header">
                         <>
                             {data && data.map(i => {
-                                // console.log('inside', i)
+                                 console.log('inside', i)
                                 return (<WeatherContainer
                                     description={i.weather.description}
                                     icon={i.weather.icon}
                                     temp={i.temp}
                                     city={i.city_name}
+                                    sunrise={i.sunrise}
+                                    sunset={i.sunset}
                                 />)
                             })
                             }

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './WeatherCard.module.css'
 
 
-const WeatherCard = ({description, image, temp, city, min_temp, max_temp, day, sixteenOn}) => {
+const WeatherCard = ({description, image, temp, city, min_temp, max_temp, day, sixteenOn, sunrise, sunset}) => {
     return (
 
 
@@ -19,8 +19,8 @@ const WeatherCard = ({description, image, temp, city, min_temp, max_temp, day, s
                             <p>Min:{min_temp}&deg;C</p>
                         </>
                         :
-                        <> <p> Feels like: 23% </p>
-                            <p>2021-10-11:13</p></>
+                        <> <p> Sunrise: {sunrise}</p>
+                            <p>Sunset: {sunset}</p></>
 
 
                     }

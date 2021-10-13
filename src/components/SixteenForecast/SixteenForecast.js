@@ -94,7 +94,6 @@ const SixteenForecast = () => {
                     <div className={styles.sixTeenDay}>
 
                         {data && data
-                            // .filter(filterMaxTemperature)  change i in map
                             .filter(filterMinTemperature)
                             .map(i => (
                                  <WeatherContainer

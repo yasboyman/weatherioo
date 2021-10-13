@@ -8,11 +8,8 @@ import PropTypes from 'prop-types';
 
 
 
-const WeatherContainer = ({description,icon, temp, city, min_temp, max_temp, day, sixteenOn})=> {
+const WeatherContainer = ({description,icon, temp, city, min_temp, max_temp, day, sixteenOn, sunset, sunrise})=> {
     const [image,setImage] = useState()
-
-
-    console.log( typeof min_temp )
 
     useEffect(() => {
 
@@ -41,6 +38,8 @@ const WeatherContainer = ({description,icon, temp, city, min_temp, max_temp, day
             max_temp={max_temp}
             min_temp={min_temp}
             sixteenOn={sixteenOn}
+            sunrise={sunrise}
+            sunset={sunset}
 
             />
 
